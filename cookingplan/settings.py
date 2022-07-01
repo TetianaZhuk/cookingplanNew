@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+import platform
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,8 +24,12 @@ SECRET_KEY = 'django-insecure-_&1n6#4qt)-e-k87%^bg-^q#3l#8m5q89f%z9-vc4#5331t$!q
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if platform.system() == 'Linux':
+    DEBUG = False
 
 ALLOWED_HOSTS = []
+if platform.system() == 'Linux':
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -83,16 +88,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'djangodb',
-        # 'USER': 'dbuser',
-        # 'PASSWORD': 'django',
-        # 'HOST': 'localhost',
-        # 'PORT': '',
     }
 }
-
+if platform.system() == 'Linux':
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'djangodb',
+        'USER': 'dbuser',
+        'PASSWORD': 'django',
+        'HOST': 'localhost',
+        'PORT': ''
+    }
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -127,7 +133,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# STATIC_ROOT = '/var/www/html/static' + STATIC_URL
+if platform.system() == 'Linux':
+    STATIC_ROOT = '/var/www/html/static'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
