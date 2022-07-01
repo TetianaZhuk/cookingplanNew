@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+
+{% block content %}
+    <section class="u-align-center u-clearfix u-section-1" id="sec-886c">
+      <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+          <title> {{meal.name}} </title>
+          <br>
+          <h3>{{meal.name}}</h3>
+          <br>
+          <h6>by {{meal.author}}</h6>
+          <br>
+                <!-- Preview Image -->
+          <br>
+          <img src="{{ meal.photo|thumbnail_url:'image' }}" alt="" class="avatar">
+          <br>
+          {{meal.description}}
+          <br>
+            <!-- Actions -->
+          <a class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-50 u-btn-2" href="{% url 'meals:update' meal.slug %}">изменить</a>
+          <form action = "{% url 'meals:delete' meal.slug %}" method = "POST">
+              {%csrf_token%}
+              <input type = "submit"  class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-50 u-btn-2" value = "удалить">
+          </form>
+
+          <h5> Ингридиенты:</h5>
+
+          <table>
+              <tr>
+                  <th>Название</th>
+                  <th>Количество</th>
+                  <th>Ед.изм.</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+              {% for ingredient in ingredients %}
+                  <tr>
+                      <td>{{  ingredient.ingredient}}</td>
+                      <td>{{  ingredient.qty}}</td>
+                      <td>{{  ingredient.ingredient.units}}</td>
+                      <td>
+                          <form action="{% url 'meals:delete_ingredient' meal.slug ingredient.pk %}" method="post" >
+                              {%csrf_token%}
+                              <button type="submit" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-50 u-btn-2">Удалить</button>
+                          </form>
+
+                      </td>
+                      <td>
+                          <a href="meals:update_ingredient" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-50 u-btn-2">Изменить</a>
+                      </td>
+                  </tr>
+              {% endfor %}
+          </table>
+          <!-- MealIngredients Form -->
+          <div claass="well">
+              <h6>Добавить ингридиенты:</h6>
+              <form action="{% url 'meals:add_ingredients' meal.slug %}" method="post" >
+                  <div>
+                      <hr>
+                      {%csrf_token%}
+                      {{form|crispy}}
+                      <hr>
+                  </div>
+                  <button type="submit" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-50 u-btn-2">Добавить</button>
+              </form>
+          </div>
+      </div>
+    </section>
+{% endblock %}

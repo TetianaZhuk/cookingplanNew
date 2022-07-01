@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_2a64">
+        <div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">
+            <form action = "{% url 'meals:delete' meal.pk %}" method = "POST">
+                {%csrf_token%}
+                <p>Вы действительно хотите удалить ,блюдо "{{ meal.name }}"?</p>
+                <input type = "submit"  value = "Удалить">
+            </form>
+        </div>
+    </section>
+{% endblock %}

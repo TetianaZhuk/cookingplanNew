@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/menu/menu.css' %}" media="screen">
+{% endblock %}
+
+{% block content %}
+
+    <section class="u-align-center u-clearfix u-section-1" id="sec-886c">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+                <div class="u-layout">
+                    <div class="u-layout-row">
+                        <div class="u-container-style u-layout-cell u-shape-rectangle u-size-15 u-layout-cell-1">
+                            <div class="u-container-layout u-container-layout-1">
+                                <div class="u-align-center u-container-style u-group u-group-1">
+                                    <form method="post" action="" class="u-container-layout u-container-layout-2">
+                                        {% csrf_token %}
+                                        {{ date_form|crispy }}
+{#                                        <button  class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-6 u-btn-1" type="submit">ПРОСМОТРЕТЬ</button>#}
+                                        <a  class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-6 u-btn-2"  href="">В список покупок</a>
+                                        <a href="{% url 'menu:create' %}" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-6 u-btn-1">Создать</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="u-container-style u-layout-cell u-shape-rectangle u-size-45 u-layout-cell-2">
+                            <div class="u-container-layout u-container-layout-4">
+                                {% for day in days %}
+                                <div class="u-container-style u-expanded-width u-group u-group-3">
+                                    <div class="u-container-layout u-container-layout-5">
+                                        <h4 class="u-text u-text-default u-text-3">
+                                                {{ day.date|date:'l'}}
+                                                {{ day.date|date:'d'}}
+                                                {{ day.date|date:'F'}} {{ day.date|date:'Y'}}
+                                        </h4>
+
+
+                                        <form method="post" action="{% url 'menu:delete' day.slug %}">
+                                            {% csrf_token %}
+                                           <button  class="u-active-none u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-dark-2 u-btn u-button-style u-hover-none u-none u-text-active-palette-2-base u-text-custom-color-2 u-text-hover-palette-2-base u-btn-4" type="submit">Удалить</button>
+                                        </form>
+
+                                        <div class="u-list u-list-1">
+                                            <div class="u-align-center u-repeater u-repeater-1">
+                                                <div class="u-align-center u-border-9 u-border-custom-color-2 u-border-no-bottom u-border-no-left u-border-no-right u-container-style u-list-item u-radius-50 u-repeater-item u-shape-round u-video-cover u-white u-list-item-1" data-animation-name="customAnimationIn" data-animation-duration="1750" data-animation-direction="" data-animation-delay="250">
+                                                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-6">
+                                                        <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-4">Завтрак</h4>
+                                                        <span class="u-file-icon u-icon u-icon-2">
+                                                            <img src="{% static 'images/868070.png' %}" alt="">
+                                                        </span>
+                                                            {% if day.breakfast %}
+                                                            <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-4">{{ day.breakfast.name }}</h4>
+                                                            {% else %}
+                                                            <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-4">Блюдо не выбрано</h4>
+                                                            {% endif %}
+                                                    <a href="{% url 'menu:create_breakfast' day.slug %}" class="u-active-none u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-dark-2 u-btn u-button-style u-hover-none u-none u-text-active-palette-2-base u-text-custom-color-2 u-text-hover-palette-2-base u-btn-4">Изменить</a>
+                                                    </div>
+                                                </div>
+                                                <div class="u-align-center u-border-9 u-border-custom-color-2 u-border-no-bottom u-border-no-left u-border-no-right u-container-style u-list-item u-radius-50 u-repeater-item u-shape-round u-video-cover u-white u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1750" data-animation-direction="" data-animation-delay="250">
+                                                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-7">
+                                                        <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-5"> Обед</h4>
+                                                        <span class="u-file-icon u-icon u-icon-2">
+                                                            <img src="{% static 'images/868070.png' %}" alt="">
+                                                        </span>
+                                                        {% if day.launch %}
+                                                            <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-4">{{ day.launch.name }}</h4>
+                                                        {% else %}
+                                                            <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-4">Блюдо не выбрано</h4>
+                                                        {% endif %}
+                                                    <a href="{% url 'menu:create_launch' day.slug %}" class="u-active-none u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-dark-2 u-btn u-button-style u-hover-none u-none u-text-active-palette-2-base u-text-custom-color-2 u-text-hover-palette-2-base u-btn-4">Изменить</a>
+                                                    </div>
+                                                </div>
+                                                <div class="u-align-center u-border-9 u-border-custom-color-2 u-border-no-bottom u-border-no-left u-border-no-right u-container-style u-list-item u-radius-50 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1750" data-animation-direction="" data-animation-delay="250">
+                                                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-8">
+                                                        <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-6"> Ужин</h4>
+                                                        <span class="u-file-icon u-icon u-icon-2">
+                                                            <img src="{% static 'images/868070.png' %}" alt="">
+                                                        </span>
+                                                        {% if day.dinner %}
+                                                            <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-4">{{ day.dinner.name }}</h4>
+                                                        {% else %}
+                                                            <h4 class="u-custom-font u-font-montserrat u-text u-text-default u-text-4">Блюдо не выбрано</h4>
+                                                        {% endif %}
+                                                    <a href="{% url 'menu:create_dinner' day.slug %}" class="u-active-none u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-dark-2 u-btn u-button-style u-hover-none u-none u-text-active-palette-2-base u-text-custom-color-2 u-text-hover-palette-2-base u-btn-4">Изменить</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}
+
+

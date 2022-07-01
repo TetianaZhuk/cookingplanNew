@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <section class="u-align-center u-clearfix u-section-1" id="sec-886c">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <h5 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">У тебя всегда есть план :)</h5>
+                  <div class="u-expanded-width-lg u-opacity u-opacity-45 u-shape u-shape-svg u-text-palette-2-light-2 u-shape-1">
+                    <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 160" style="">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9c5e"></use>
+                    </svg>
+                    <svg class="u-svg-content" viewBox="0 0 160 160" x="0px" y="0px" id="svg-9c5e" style="enable-background:new 0 0 160 160;">
+                        <path d="M151.7,132.5c-3.4,6-7.9,11.7-13.3,16.5c-29.2,26.1-54.1-2.3-88.2-3S0,109.5,0,91.6s14.8-31.3,25.3-45.3S33.4,11,51.8,3
+	c15.3-6.6,33.6-0.4,51.6,0.7c11.2,0.7,28.8-3.8,38.2,0.4s11.8,15.4,9.2,22.8c-1.9,5.4-5.5,11.6-12.8,16.5
+	c-9.3,10.1-4.7,22.9,3.7,33.4c7.8,9.7,17.7,11.7,18.3,23.5C160.4,110.8,157.6,122.2,151.7,132.5L151.7,132.5z"></path>
+                    </svg>
+                  </div>
+                  <img class="u-image u-image-contain u-image-default u-image-1" src="{% static 'images/566-min.png' %}" alt="" data-image-width="900" data-image-height="821">
+{#                  <h2 class="u-custom-font u-font-montserrat u-text u-text-custom-color-2 u-text-2"> cooking​Plan</h2>#}
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <div class="u-expanded-width u-list u-list-1">
+                      <div class="u-repeater u-repeater-1">
+                          <a href="{% url 'meals:list' %}">
+                            <div class="u-align-left u-border-2 u-border-white u-container-style u-list-item u-repeater-item u-list-item-1">
+                                <div class="u-container-layout u-similar-container u-container-layout-3">
+                                    <span class="u-custom-color-2 u-file-icon u-icon u-icon-circle u-icon-1">
+                                        <img src="{% static 'images/5.png' %}" alt="">
+                                    </span>
+                                    <h6 class="u-align-center u-custom-font u-font-montserrat u-text u-text-default u-text-3">Рецепты</h6>
+                                    <p class="u-text u-text-grey-40 u-text-4">Добавляй свои рецепты или используй существующие.</p>
+                                </div>
+                            </div>
+                          </a>
+                          <a href="{% url 'menu:list' %}">
+                            <div class="u-align-left u-border-2 u-border-white u-container-style u-list-item u-repeater-item u-list-item-2">
+                                <div class="u-container-layout u-similar-container u-container-layout-4">
+                                    <span class="u-custom-color-2 u-file-icon u-icon u-icon-circle u-icon-2">
+                                        <img src="{% static 'images/6.png' %}" alt="">
+                                    </span>
+                                    <h6 class="u-align-center u-custom-font u-font-montserrat u-text u-text-default u-text-5"> Меню</h6>
+                                    <p class="u-text u-text-grey-40 u-text-6">Планируй и просматривай меню за любой период</p>
+                                </div>
+                            </div>
+                          </a>
+                          <a href="">
+                            <div class="u-align-left u-border-2 u-border-white u-container-style u-list-item u-repeater-item u-list-item-3">
+                                <div class="u-container-layout u-similar-container u-container-layout-5">
+                                    <span class="u-custom-color-2 u-file-icon u-icon u-icon-circle u-icon-3">
+                                        <img src="{% static 'images/7.png' %}" alt="">
+                                    </span>
+                                    <h6 class="u-align-center u-custom-font u-font-montserrat u-text u-text-default u-text-7"> Список покупок</h6>
+                                    <p class="u-text u-text-grey-40 u-text-8">Составляй список покупок на основании запланированного меню</p>
+                                </div>
+                            </div>
+                          </a>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        Дата:
+        <br>
+        {{ day.date }}
+        <br>
+    <table>
+        <tr>
+            <th>Завтрак</th>
+            <th>Обед</th>
+            <th>Ужин</th>
+        </tr>
+        <tr>
+            <td>
+                {% if day.breakfast %}
+                    {{ day.breakfast }}
+                {% else %}
+                    <p>Блюдо не выбрано</p>
+                {% endif %}
+            </td>
+            <td>
+                {% if day.launch %}
+                    {{ day.launch }}
+                {% else %}
+                    <p>Блюдо не выбрано</p>
+                {% endif %}
+            </td>
+            <td>
+                {% if day.dinner %}
+                    {{ day.dinner }}
+                {% else %}
+                    <p>Блюдо не выбрано</p>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ day_detail_form.breakfast }}
+            </td>
+            <td>
+                {{ day_detail_form.launch }}
+            </td>
+            <td>
+                {{ day_detail_form.dinner }}
+            </td>
+        </tr>
+    </table>
+        <button type="submit">Сохранить</button>
+    </form>
+
+
+
+{% endblock %}

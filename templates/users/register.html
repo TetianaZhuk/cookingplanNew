@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <section class="u-align-center u-clearfix u-section-1" id="sec-886c">
+        <div class="u-clearfix u-sheet u-sheet-1">
+                <h1>Registration</h1>
+                <form method="post">
+                    <table>
+                        {{ form|crispy }}
+                    </table>
+                    {% csrf_token %}
+                    <input type="submit">
+                </form>
+        </div>
+    </section>
+{% endblock %}

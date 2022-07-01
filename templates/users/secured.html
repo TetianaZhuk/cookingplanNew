@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <section class="u-align-center u-clearfix u-section-1" id="sec-886c">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <h1>Welcome {{ user.username }}!</h1>
+            <p>Your account has been successfully created. Now you can <a href="{% url 'users:login' %}">Login</a>.</p>
+        </div>
+    </section>
+{% endblock %}

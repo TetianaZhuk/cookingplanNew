@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="u-layout-row">
+        <div class="u-container-style u-layout-cell u-shape-rectangle u-size-15 u-layout-cell-1">
+            <div class="u-container-layout u-container-layout-1">
+                <div class="u-align-center u-container-style u-group u-group-1">
+                    <form method="post" action="" class="u-container-layout u-container-layout-2">
+                        {% csrf_token %}
+                        {{ day_detail_form|crispy }}
+                        <button  class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-1 u-radius-6 u-btn-1" type="submit">сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

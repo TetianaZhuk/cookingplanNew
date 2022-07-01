@@ -1,0 +1,15 @@
+{% extends "meals/base.html" %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+
+{% block content %}
+    <title> {{ingradient.name}} </title>
+    <br>
+        {{ingredient.name}}
+
+    <br>
+        {{ingredient.units}}
+    <br>
+
+ {% endblock %}
